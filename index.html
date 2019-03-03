@@ -13,9 +13,11 @@
     <main>
       <section id="add_bookmark">
         <h2>Add Bookmark</h2>
-        <input type="text">
-        <input type="url">
-        <button>Add Bookmark</button>
+        <form>
+          <input type="text" name="bookmark_title" id="bookmark_title" placeholder="title chapter #">
+          <input type="url" name="bookmark_url" id="bookmark_url" placeholder="url for bookmarked chapter">
+          <input type="button" onClick="add_bookmark()" value="Add Bookmark">
+        </form>
       </section>
       <section>
         <h2>Bookmarks</h2>
