@@ -21,7 +21,7 @@ function update_page(){
 		if( n < localStorage.length){
 		  bookmarksContainer = document.getElementById("bookmarks");
           bookmark = "<div><a href='"+localStorage.getItem(i)+"'>"+
-                     i +"</a>";
+                     i +"</a></div>";
           bookmarksContainer.innerHTML += bookmark
 		  console.log(localStorage.getItem(i))
 
@@ -29,3 +29,6 @@ function update_page(){
 	    n++;
 	}
 }
+
+
+update_page()
