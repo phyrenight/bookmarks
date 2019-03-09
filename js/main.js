@@ -16,25 +16,39 @@ function update_page(){
   // if statement is necessary because without it ,it will print methods as well
   let bookmark;
   let bookmarksContainer;
+  let bookmarkHtml = "";
   let bookmarkTitle;
   let n = 0; 
   for( i in localStorage){
     if( n < localStorage.length){
       bookmarksContainer = document.getElementById("bookmarks");
           bookmarkTitle = i.replace(' ', '_')
-          bookmarkHtml = "<div><a href='"+localStorage.getItem(i)+"'>"+
+          bookmarkHtml += "<div><a href='"+localStorage.getItem(i)+"'>"+
                         i +"</a>"+
                         "<input type='button' value='Delete' id='delete_bookmark_"+bookmarkTitle+"'>"+
                       "</div>";
-          bookmarksContainer.innerHTML += bookmarkHtml;           
-         function bindButtons(){
-            bookmark = document.getElementById("delete_bookmark_"+bookmarkTitle)
-            bookmark.addEventListener('click', delete_bookmark)
-        }
+        //  bookmarksContainer.innerHTML += bookmarkHtml;  
+        //  bookmark = document.getElementById("delete_bookmark_"+bookmarkTitle)
+        //  bookmark.addEventListener('click', delete_bookmark)        
+
       }
 	    n++;
 	}
-  bindButtons
+  bookmarksContainer.innerHTML += bookmarkHtml
+  bindButton()
+
+}
+
+function bindButton(){
+  console.log("i")
+  function a(){
+    for( let i in localStorage){
+      bookmarkTitle = i.replace(' ', '_');
+      bookmark = document.getElementById("delete_bookmark_"+bookmarkTitle)
+      bookmark.addEventListener('click', delete_bookmark)
+    }
+  }
+  a()
 }
 
 
