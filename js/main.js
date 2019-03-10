@@ -4,8 +4,13 @@ function add_bookmark(){
   bookmarkTitle = document.getElementById("bookmark_title").value;
   bookmarkUrl = document.getElementById("bookmark_url").value;
   if(bookmarkTitle){
-    localStorage.setItem(bookmarkTitle,bookmarkUrl);
-    update_page();
+    if(!(bookmarkTitle in localStorage)){
+      localStorage.setItem(bookmarkTitle,bookmarkUrl);
+      update_page();
+    }
+    else{
+      alert(bookmarkTitle+" already in bookmarks!")
+    }
   }
   else{
     document.getElementById("bookmark_title").placeholder = "Please enter a title";
@@ -25,7 +30,7 @@ function update_page(){
       if( n < localStorage.length){
         bookmarksContainer = document.getElementById("bookmarks");
         bookmarkTitle = i.replace(' ', '_')
-        bookmarkHtml += "<div><a href='"+localStorage.getItem(i)+"'>"+
+        bookmarkHtml += "<div id='bookmark"+bookmarkTitle+"'><a href='"+localStorage.getItem(i)+"'>"+
                         i +"</a>"+
                         "<input type='button' value='Delete' id='delete_bookmark_"+bookmarkTitle+"'>"+
                         "</div>";      
@@ -57,17 +62,23 @@ function bindButton(){
 function delete_bookmark(){
   let answer;
   let bookmarkTitle;
+  let child_node;
   bookmarkTitle = this.id.slice(16);
+  let child_id = bookmarkTitle
   bookmarkTitle = bookmarkTitle.replace('_', ' ')
 	answer = confirm("Do you want to delete "+ bookmarkTitle+"?");
 	if(answer){
     localStorage.removeItem(bookmarkTitle);
+    child_node = document.getElementById("bookmark"+child_id)
+    console.log(child_node)
+    if(child_node.parentNode){
+      child_node.parentNode.removeChild(child_node);
+    }
   }  
 }
 
 // need to add removal part to delete_bookmark bookmarks still show after deleted from local storage. currently have to refresh to get rid of them.
 
-// add function to clear localStorage
 function clear_localstorage(){
   let answer = confirm("Are you sure you want to clear local storage?")
   if(answer){
@@ -76,5 +87,6 @@ function clear_localstorage(){
     bookmarks.innerHTML = "";
   }
 }
+
 
 update_page()
