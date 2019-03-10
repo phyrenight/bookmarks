@@ -43,7 +43,6 @@ function bindButton(){
     let n = 0;
     for( let i in localStorage){
       if(n < localStorage.length){
-      console.log(i)
       bookmarkTitle = i.replace(' ', '_');
       bookmark = document.getElementById("delete_bookmark_"+bookmarkTitle);
       bookmark.addEventListener('click', delete_bookmark);
@@ -53,7 +52,7 @@ function bindButton(){
   }
   innerFunction()
 }
-// add a check for length in bindbutton this will get rid of the error message
+
 
 function delete_bookmark(){
   let answer;
@@ -69,5 +68,13 @@ function delete_bookmark(){
 // need to add removal part to delete_bookmark bookmarks still show after deleted from local storage. currently have to refresh to get rid of them.
 
 // add function to clear localStorage
+function clear_localstorage(){
+  let answer = confirm("Are you sure you want to clear local storage?")
+  if(answer){
+    localStorage.clear()
+    bookmarks = document.getElementById("bookmarks")
+    bookmarks.innerHTML = "";
+  }
+}
 
 update_page()
