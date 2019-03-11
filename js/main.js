@@ -6,7 +6,7 @@ function add_bookmark(){
   if(bookmarkTitle){
     if(!(bookmarkTitle in localStorage)){
       localStorage.setItem(bookmarkTitle,bookmarkUrl);
-      update_page();
+      update_page(bookmarkTitle, bookmarkUrl);
     }
     else{
       alert(bookmarkTitle+" already in bookmarks!")
@@ -18,7 +18,7 @@ function add_bookmark(){
 }
 
 
-function update_page(){
+function inital_bookmark_loading(){
   // if statement is necessary because without it ,it will print methods as well
   let bookmark;
   let bookmarksContainer;
@@ -77,7 +77,6 @@ function delete_bookmark(){
   }  
 }
 
-// need to add removal part to delete_bookmark bookmarks still show after deleted from local storage. currently have to refresh to get rid of them.
 
 function clear_localstorage(){
   let answer = confirm("Are you sure you want to clear local storage?")
@@ -89,4 +88,15 @@ function clear_localstorage(){
 }
 
 
-update_page()
+function update_page(bookmarkTitle, bookmarkUrl){
+  bookmarksContainer = document.getElementById("bookmarks");
+  bookmarkTitleId = bookmarkTitle.replace(' ', '_');
+  bookmarkHtml = "<div id='bookmark"+bookmarkTitleId+"'><a href='"+bookmarkUrl+"'>"+
+                  bookmarkTitle +"</a>"+
+                 "<input type='button' value='Delete' id='delete_bookmark_"+bookmarkTitleId+"'>"+
+                 "</div>";
+  bookmarksContainer.innerHTML += bookmarkHtml;
+}
+
+
+inital_bookmark_loading()
