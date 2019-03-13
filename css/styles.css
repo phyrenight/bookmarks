@@ -32,6 +32,20 @@ div > a{
   padding: 10px 0;
 }
 
+
+@media(min-width: 500px){
+  form input[type="button"]{
+    margin: 0 auto;
+    }
+  input[type="button"]{
+    margin: 0 auto;
+  }
+  #bookmarks div{
+    padding: 15px 0;
+    flex-direction: column;
+    justify-content: space-around;
+  }
+}
 /*header {
   text-align: center;
 }
