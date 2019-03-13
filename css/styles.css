@@ -1,0 +1,60 @@
+/* css styles*/
+
+body{
+  margin: 0 auto;
+}
+body, header, form, section, #bookmarks,div{
+  display: flex;
+  flex-direction: column;
+  text-align:center;
+}
+
+input{
+  height: 40px;
+  font-size:1.2em;
+}
+input[type="text"], input[type="url"]{
+  background-color: #faebd7;
+  margin: 3px auto;
+}
+
+
+#clear_bookmarks{
+  background: red;
+  height: 50px;
+  margin: 10px auto;
+}
+a {
+  font-size: 1.4em;
+}
+
+div > a{
+  padding: 10px 0;
+}
+
+/*header {
+  text-align: center;
+}
+
+form{
+  display: flex;
+  flex-direction: column;
+}
+
+h2{
+  text-align: center;
+}
+
+#clear_bookmarks{
+  background:red;
+  margin: 0 auto;
+}
+
+#bookmarks{
+  text-align: center;
+}
+
+#bookmarks div{
+  display: flex;
+  flex-direction: column;
+}*/
