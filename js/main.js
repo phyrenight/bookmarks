@@ -29,11 +29,7 @@ function inital_bookmark_loading(){
     for( i in localStorage){
       if( n < localStorage.length){
         bookmarksContainer = document.getElementById("bookmarks");
-        bookmarkTitle = i.replace(' ', '_')
-        bookmarkHtml += "<div id='bookmark"+bookmarkTitle+"'><a href='"+localStorage.getItem(i)+"'>"+
-                        i +"</a>"+
-                        "<input type='button' value='Delete' id='delete_bookmark_"+bookmarkTitle+"'>"+
-                        "</div>";      
+        bookmarkHtml += create_bookmark_div(i,localStorage.getItem(i));
       }
 	    n++;
 	  }
@@ -90,12 +86,17 @@ function clear_localstorage(){
 
 function update_page(bookmarkTitle, bookmarkUrl){
   bookmarksContainer = document.getElementById("bookmarks");
-  bookmarkTitleId = bookmarkTitle.replace(' ', '_');
-  bookmarkHtml = "<div id='bookmark"+bookmarkTitleId+"'><a href='"+bookmarkUrl+"'>"+
-                  bookmarkTitle +"</a>"+
-                 "<input type='button' value='Delete' id='delete_bookmark_"+bookmarkTitleId+"'>"+
-                 "</div>";
+  bookmarkHtml = create_bookmark_div(bookmarkTitleId, bookmarkUrl);
   bookmarksContainer.innerHTML += bookmarkHtml;
+}
+
+
+function create_bookmark_div(bookmarkTitle, bookmarkUrl){
+  bookmarkTitle = bookmarkTitle.replace(' ', '_');
+  return "<div id='bookmark"+bookmarkTitle+"'><a href='"+bookmarkUrl+"'>"+
+                  bookmarkTitle +"</a>"+
+                 "<input type='button' value='Delete' id='delete_bookmark_"+bookmarkTitle+"'>"+
+                 "</div>";
 }
 
 
