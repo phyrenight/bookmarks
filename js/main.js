@@ -86,8 +86,9 @@ function clear_localstorage(){
 
 function update_page(bookmarkTitle, bookmarkUrl){
   bookmarksContainer = document.getElementById("bookmarks");
-  bookmarkHtml = create_bookmark_div(bookmarkTitleId, bookmarkUrl);
+  bookmarkHtml = create_bookmark_div(bookmarkTitle, bookmarkUrl);
   bookmarksContainer.innerHTML += bookmarkHtml;
+  bindButton()
 }
 
 
