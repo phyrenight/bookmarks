@@ -9,14 +9,20 @@ function add_bookmark(){
       update_page(bookmarkTitle, bookmarkUrl);
     }
     else{
-      alert(bookmarkTitle+" already in bookmarks!")
+      alert(bookmarkTitle+" already in bookmarks!");
     }
   }
   else{
     document.getElementById("bookmark_title").placeholder = "Please enter a title";
   }
+  empty_input_fields();
 }
 
+function empty_input_fields(){
+  // Clears input fields for the next item to be added
+  document.getElementById("bookmark_title").value = "";
+  document.getElementById("bookmark_url").value = "";
+}
 
 function inital_bookmark_loading(){
   // if statement is necessary because without it ,it will print methods as well
@@ -51,7 +57,7 @@ function bindButton(){
       }
     }
   }
-  innerFunction()
+  innerFunction();
 }
 
 
@@ -60,13 +66,12 @@ function delete_bookmark(){
   let bookmarkTitle;
   let child_node;
   bookmarkTitle = this.id.slice(16);
-  let child_id = bookmarkTitle
+  let child_id = bookmarkTitle;
   bookmarkTitle = bookmarkTitle.replace('_', ' ')
 	answer = confirm("Do you want to delete "+ bookmarkTitle+"?");
 	if(answer){
     localStorage.removeItem(bookmarkTitle);
-    child_node = document.getElementById("bookmark"+child_id)
-    console.log(child_node)
+    child_node = document.getElementById("bookmark"+child_id);
     if(child_node.parentNode){
       child_node.parentNode.removeChild(child_node);
     }
@@ -101,4 +106,4 @@ function create_bookmark_div(bookmarkTitle, bookmarkUrl){
 }
 
 
-inital_bookmark_loading()
+inital_bookmark_loading();
